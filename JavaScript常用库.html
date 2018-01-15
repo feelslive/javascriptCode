@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>javascript常用代码库</title>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		/**
+		 * 1.判断两个数组是否相等
+		 * arr1 arr2-> Array
+		 * return Boolean
+		 */
+		const arrayEqual = (arr1,arr2) => {
+			if(arr1 === arr2) return true;
+			if(arr1.length != arr2.length) return false;
+			for (let i=0;i<arr1.length;i++) {
+				if(arr1[i] !== arr2[i]) return false;
+			}
+			return true;
+		}
+		console.log(arrayEqual([1,2,3],[1,2,3])) //-> true
+
+
+		/**
+		 * 2.1 判断元素是否有某个class
+		 * el -> ele
+		 * str-> cls
+		 * return Boolean
+		 */
+		const hasClass = (ele,cls) => {
+			return (new RegExp('(\\s|^)' + cls + '(\\s|$)')).test(ele.className);
+		}
+		/**
+		 * 2.2 给元素添加class
+		 * el -> ele
+		 * str-> cls
+		 */
+		const addClass = (ele,cls) => {
+			if (!hasClass(ele,cls)) {
+				ele.className += ' ' + cls;
+			}
+		}
+		/**
+		 * 2.3 给元素移除class
+		 * el -> ele
+		 * str-> cls
+		 */
+		const removeClass = (ele,cls) => {
+			if(hasClass(ele,cls)) {
+				let reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+				ele.className = ele.className.replace(reg,'');
+			}
+		}
+		removeClass(box,'box');
+
+
+
+
+		/**
+		 * 3. 获取滚动条距顶部距离
+		 */
+		function getScrollTop() {
+			return (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+		}
+		console.log(getScrollTop())
+
+
+		/**
+		 * 4. 随机生成颜色
+		 * return str
+		 */
+		function randomColor() {
+			return '#' + ('00000'+(Math.random()*0x100000<< 0).toString(16)).slice(-6);
+		}
+		console.log(randomColor())
+
+
+		/**
+		 * 5.生成制定返回随机数
+		 * min -> number
+		 * max -> number
+		 * return number
+		 */
+		const randomNum = (min,max) => {
+			return Math.floor(min + Math.random() * (max-min+1))
+		}
+		console.log(randomNum(1,6))
+
+	</script>
+</body>
+</html>
